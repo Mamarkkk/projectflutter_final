@@ -12,9 +12,10 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   // text controllers
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController comfirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,71 +26,97 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(
+                height: 50,
+              ),
               Icon(
-                Icons.person_add,
+                Icons.lock_open_rounded,
                 size: 72,
                 color: Theme.of(context).colorScheme.primary,
               ),
-              const SizedBox(height: 50),
+              const SizedBox(
+                height: 50,
+              ),
               Text(
-                "Create a new account",
+                "Create an account.",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
                   fontSize: 16,
                 ),
               ),
-              const SizedBox(height: 25),
-              // email
-              MyTextField(
-                controller: emailController,
-                hintText: "Enter your email",
-                obscureText: false,
+              const SizedBox(
+                height: 25,
               ),
-              const SizedBox(height: 20),
-              // password
+              //email
               MyTextField(
-                controller: passwordController,
-                hintText: "Enter your password",
-                obscureText: true,
+                  controller: nameController,
+                  hintText: "Enter your name",
+                  obscureText: false),
+              const SizedBox(
+                height: 20,
               ),
-              const SizedBox(height: 20),
-              // confirm password
               MyTextField(
-                controller: confirmPasswordController,
-                hintText: "Confirm your password",
-                obscureText: true,
+                  controller: emailController,
+                  hintText: "Enter your email",
+                  obscureText: false),
+              const SizedBox(
+                height: 20,
               ),
-              const SizedBox(height: 10),
+              MyTextField(
+                  controller: passwordController,
+                  hintText: "Enter your password",
+                  obscureText: true),
+              const SizedBox(
+                height: 20,
+              ),
+              //passsword
+              MyTextField(
+                  controller: comfirmPasswordController,
+                  hintText: "Confirm your password",
+                  obscureText: true),
+              const SizedBox(
+                height: 10,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               MyButton(
-                text: "Register",
-                onTap: () {
-                  // Registration logic goes here
-                  // For example, you can show a message or navigate back to the login page
-                  Navigator.pop(context); // Navigate back to the LoginPage
-                },
+                  text: "Register",
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  }),
+
+              const SizedBox(
+                height: 50,
               ),
-              const SizedBox(height: 50),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Already have an account?",
-                    style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  //tap to register page
                   GestureDetector(
                     child: Text(
                       "Login",
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold),
                     ),
                     onTap: () {
                       Navigator.pop(context);
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage())); // Navigate back to the LoginPage
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
                     },
                   ),
                 ],

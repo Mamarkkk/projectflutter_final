@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project1/components/my_button.dart';
 import 'package:project1/components/my_text_field.dart';
+import 'package:project1/screens/home_page.dart';
+import 'package:project1/screens/login_page.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
+  
+
   final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(
-        title: Text("Forgot Password", style: TextStyle(Theme.of(context).colorScheme.primary),),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -20,9 +20,8 @@ class ForgotPasswordPage extends StatelessWidget {
           children: [
             Text(
               "Enter your email and we'll send you a link to reset your password.",
-              textAlign: TextAlign.center,
-              ,
-            ),
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              textAlign: TextAlign.center,),
             const SizedBox(height: 20),
             MyTextField(
               controller: emailController,
@@ -33,9 +32,14 @@ class ForgotPasswordPage extends StatelessWidget {
             MyButton(
               text: "Send OTP",
               onTap: () {
+
+                Navigator.pop(context);
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
                 // Logic to send OTP goes here
                 String email = emailController.text;
                 print("Sending OTP to: $email");
+                
                 // Optionally, show a success message
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("OTP sent to $email",)),

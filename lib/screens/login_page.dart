@@ -3,6 +3,7 @@ import 'package:project1/components/my_button.dart';
 import 'package:project1/components/my_text_field.dart';
 import 'package:project1/screens/home_page.dart';
 import 'package:project1/screens/register_page.dart';
+import 'package:project1/screens/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -65,18 +66,30 @@ class _LoginPageState extends State<LoginPage> {
               //forgot password
               Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forget Password?",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold),
+                  child: GestureDetector(
+                    child: Text(
+                      "Forget Password?",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold),
+                          
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ForgotPasswordPage())); // Navigate back to the LoginPage
+                    },
                   )),
               const SizedBox(
                 height: 10,
               ),
-              MyButton(text: "Login", onTap: () {Navigator.pop(context);
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomePage()));}),
+              MyButton(
+                  text: "Login",
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  }),
 
               const SizedBox(
                 height: 50,
@@ -85,16 +98,29 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have an account yet?",style: TextStyle(color: Theme.of(context).colorScheme.primary),),
+                  Text(
+                    "Don't have an account yet?",
+                    style:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
                   //tap to register page
                   GestureDetector(
-                    child: Text("Register",style: TextStyle(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold),),
-                    onTap: () {Navigator.pop(context);
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()));},
+                    child: Text(
+                      "Register",
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RegisterPage()));
+                    },
                   ),
                 ],
               )
